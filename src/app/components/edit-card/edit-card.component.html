@@ -1,0 +1,54 @@
+
+
+<div class ="edit-card" [style.backgroundColor]="data.color" fxFlex="100"  fxLayout="column"  >
+  <div class="note-title" fxFlex="30"  >
+     <textarea class="note-title-area" spellcheck="false" placeholder="Title" matTextareaAutosize [formControl]="title"></textarea>
+  </div>
+  <div class="area" fxFlex="30">
+    <textarea class="note-content-area" spellcheck="false" matTextareaAutosize [formControl]="description" placeholder="Take a note..."></textarea>
+  </div>
+  <div fxFlex="20" fxLayout="row" fxLayoutAlign="space-between end ">
+      <div fxLayout="row wrap" class="spacebetween">
+          <div *ngFor="let index of data.collaborators" (click)="openCollaboratorPage(data)">
+              <button mat-mini-fab class="colbutton"matTooltip={{index.email}}>
+                  {{index.firstName|slice:0:1 }}
+              </button>
+          </div>
+      </div><br>
+  </div>
+  <div fxFlex="30" fxLayout="row" fxLayoutAlign="space-between end" fxLayoutGap="50px">
+      <app-icon-list ></app-icon-list>
+    <button  mat-button  mat-dialog-close (click)="save()"><span class="close-button">Close</span></button>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- <div  class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98"
+  fxLayoutGap="20px grid" fxFlex="80">
+
+  <div *ngFor="let item of items   ">
+      <mat-card class="minicard" [style.backgroundColor]="items.color">
+        <div>
+          <div fxLayout="row">
+            <div >{{item.title}}</div>
+           
+            </div>
+          </div>
+
+          <div>{{item.description}}</div>
+          <div class="icons-div">
+            <app-icon-list fxLayout="row" [card]="item" fxLayoutAlign="space-between end"  >
+
+            </app-icon-list>
+          </div>
+      </mat-card>
+    </div>
+    </div> -->
+  

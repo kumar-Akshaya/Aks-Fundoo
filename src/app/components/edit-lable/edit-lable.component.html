@@ -1,0 +1,106 @@
+<!-- <div  fxFlex="100" > 
+  <h4>Edit labels</h4>
+  <div mat-dialog-content fxLayout="row" fxLayoutAlign="center center"> 
+    <div >
+          <mat-icon class="iconadd">close</mat-icon>
+  </div> -->
+      <!-- <mat-form-field class="lablearea" > -->
+       
+          <!-- <input matInput [formControl]="label_content" autocomplete="off" class="editInput"> -->
+        <!-- </mat-form-field> -->
+     
+        <!-- <mat-icon class="iconcheck">check</mat-icon>
+  </div>
+  
+  <div  fxLayout="row" fxLayoutAlign="end end" >
+     
+    <button  mat-flat-button  [mat-dialog-close]="label_content" >close</button>
+  </div> -->
+
+
+
+  <!-- ************************Edit Labels Dialog Display********************* -->
+
+<div class="pad">
+  <div class="editlabel">
+      <b>Edit Label</b>
+  </div><br>
+  <div fxLayout="row" fxLayoutAlign="space-around start" class="padding">
+      <div fxFlex=15>
+          <i class="material-icons" style="cursor : pointer" mat-Tooltip="CLOSE"
+           (click)="clear()">
+              clear
+          </i>
+      </div>
+      <div fxFlex=70>
+          <div contenteditable="true" #labelId aria-placeholder="Create New Label"
+            class="reset" data-text="Create New Label"></div><br>
+      </div>
+      <div fxFlex=15>
+          <i class="material-icons" style="cursor : pointer" (click)="addLabels()"
+           mat-Tooltip="Create">
+              done
+          </i>
+      </div>
+  </div>
+  <hr>
+  <div *ngFor="let index of labelArray1 trackBy : val?.id">
+      <div *ngIf="editShow != index.id">
+          <a mat-list-item>
+              <span class="delete" (click)="deleteThisLabel(index.id)">
+                  <i class="material-icons" matTooltip="Delete Label">
+                      delete
+                  </i></span>
+              <span contenteditable="false" id="newLabelId" class="names"
+               [innerHTML]="index.label"> </span>
+              <span class="spacing"> <i class="material-icons"
+                   matTooltip="Rename Label"
+                   (click)="edit(index.id)">
+                      create
+                  </i></span>
+          </a>
+      </div>
+      <div *ngIf="editShow == index.id">
+          <a mat-list-item>
+              <span class="delete" (click)="deleteThisLabel(index.id)">
+                  <i class="material-icons" matTooltip="Delete Label">
+                      delete
+                  </i></span>
+              <span contenteditable="true" #labelsId class="names"
+               [innerHTML]="index.label">
+                   </span>
+              <span class="spacing"> <i class="material-icons"
+                   matTooltip="Rename Label" 
+                  (click)="updateTheLabel(index.id)">
+                      done
+                  </i></span>
+          </a>
+      </div>
+  </div>
+  <div class="close">
+      <div class="example-button-row">
+          <button mat-button (click)="close()">Done</button>
+      </div>
+  </div>
+</div>
+
+
+<!-- 
+  <div fxLayout="row wrap" class="spacebetween">
+    <div *ngFor="let index of notes.noteLabels trackBy : val?.id">
+      <div *ngIf="index.isDeleted == false">
+        <mat-chip-list selected>
+          <mat-chip  (click)="select(index)">
+            <span class="displayLabels">{{index.label}}</span>
+            <mat-icon matChipRemove (click)="$event.stopPropagation();
+             deleteChips(notes.id,index.id)">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </div>
+  <br> -->
+
+<!-- </div> -->
+
+

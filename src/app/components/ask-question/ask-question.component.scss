@@ -1,0 +1,51 @@
+
+
+
+// .start{
+//     // font-family: $font-family;
+// }
+mat-card{
+    background-color:#dad8d3;
+    padding: 10px;
+    box-shadow: 5px 10px 8px #888888;
+}
+.viewIt{
+    margin: -19px 0px 11px 23px;;
+}
+
+.namer{
+    margin-top: 10px;
+}
+// .question{
+//     // margin-top:$margin-top;
+// }
+.viewReply{
+    margin-left: 4%;
+    // font-family: $font-family;
+    font-size: 10px;
+}
+.hideReply{
+    margin-left: 4%;
+    // font-family: $font-family;
+    font-size: 10px;
+}
+.scrollBar{
+    height: 400px;
+    overflow-y: scroll;
+    margin-top: 20px;
+}
+// .image{
+//     @include image;
+// }
+// .displayImage{
+//     margin-top:$margin-top;
+// }
+// .icon{
+//     cursor:$cursor;
+// }
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+// .edit{
+//     @include edit;
+// }

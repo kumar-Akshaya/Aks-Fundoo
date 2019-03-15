@@ -1,0 +1,172 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="example-toolbar">
+
+    <div fxFlex="5">
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div fxFlex="5" fxLayout.gt-xs="row" fxFlex.gt-xs="500px" fxHide.xs >
+          <img class="gb_ma gb_4d" alt="" aria-hidden="true" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x " style="width:40px;height:40px">
+        <h1 class="example-app-name">{{titleName}}</h1>
+        <h1 *ngIf="titleName==''" >Keep</h1>
+      </div>
+
+    </div>
+    <div fxFlex="50">
+      <mat-form-field appearance="outline" [style.fontSize.px]="2" class="search">
+        <button mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+        <input fxFlex="90" type="input" [(ngModel)]="Search" matInput placeholder="Search" [style.fontSize.px]="18"
+          (keyup)="lookFor()" (click)="goSearch()" class="searchText" autocomplete="off">
+
+
+
+
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="25" class="settingbtn">
+      <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
+        <mat-icon>refresh</mat-icon>
+      </button>
+
+      <button mat-icon-button color="basic" id="grid" fxHide.xs matTooltip="grid" (click)="Change()" (click)="grid()"  (click)="listView()" >
+        <!-- <mat-icon>border_all</mat-icon> -->
+       
+          <img *ngIf="isClicked==false" src="../../../assets/image/outline-view_agenda-24px.svg"/>
+          <img *ngIf="isClicked==true" src="../../../assets/image/outline-border_all-24px.svg" />
+      </button>
+      
+     
+      <!-- <button mat-icon-button *ngIf="isClicked==true" fxFlex.xs="5">
+        
+      </button> -->
+
+      <div class="settings">
+        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="settings">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item>Send feedback</button>
+          <button mat-menu-item>App downloads</button>
+          <button mat-menu-item>Keyboard Shaortcuts</button>
+        </mat-menu>
+
+      </div>
+      <button mat-icon-button color="basic" fxHide.xs matTooltip="Notification">
+       <img src="../../../assets/image/outline-notification_important-24px (1).svg"/>
+      </button>
+
+
+    </div>
+
+
+    <button mat-icon-button color="basic" matTooltip="Apps">
+      <mat-icon>apps</mat-icon>
+    </button>
+
+    <div [matMenuTriggerFor]="menu1" fxFlex="5">
+      <img class="pic" src="../../../assets/image/profile.jpg"/>
+      </div>
+
+    <!-- <button mat-icon-button [matMenuTriggerFor]="menu1" colour="basic" class="basic" matTooltip=" GOOGLE ACCOUNT "  >
+     
+      <img src="../../../assets/image/profile.jpg"/>
+     
+    </button> -->
+
+   
+    <mat-menu #menu1="matMenu">
+      <div class="profileMenu">
+      <div  fxLayout="row" fxLayoutAlign="start start" >
+          
+          <div >
+              <img class="pic2" src="../../../assets/image/profile.jpg"/>
+              </div>   
+
+      </div>
+     
+     
+      <div fxLayout="row" fxLayoutAlign="end start" class="userNameinf">
+      <p >Akshaya M I</p>
+    </div>
+    <div  fxLayout="row" fxLayoutAlign="center center" >
+      <p class="userEmail">akshayakumarmi97@gmail.com</p>
+    </div>
+    
+      <mat-divider></mat-divider>
+      <button mat-flat-button (click)="addAccount()">Add account</button>
+      <button class="signout" mat-flat-button (click)="signout()">Sign out</button>
+     
+    </div>
+    </mat-menu>
+  
+  </mat-toolbar>
+  <mat-divider></mat-divider>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <mat-list role="List">
+
+
+          <mat-list-item role="listitem" id="note" routerLinkActive="router-link-active" (click)="Note()" >
+            <img id="img1" src="../../../assets/image/note.svg" />
+            Note</mat-list-item>
+
+          <mat-list-item role="listitem" id="rem"  routerLinkActive="router-link-active" (click)="Reminder()">
+            <img id="img2" src="../../../assets/image/remainder.svg" />
+            Reminder</mat-list-item>
+
+          <mat-divider></mat-divider>
+          <p id="para">labels</p>
+
+          <div  *ngFor="let labels of labelArray" 
+          (click)="select(labels)">
+          <div [ngClass]="routerColor==labels.label ? 'routerColorActivate' : 'noRouterColorActivate'">
+            <div *ngIf="labels.isDeleted==false">
+              <a (click)='aptTitle(labels.label);routerColorActive(labels.label)'  mat-list-item>
+              <img src="../../../assets/image/labels.svg">
+                <span class="bulp"  [innerHTML]="labels.label"></span>
+              </a>
+            </div>
+          </div>
+          </div>
+          <mat-list-item role="listitem"  routerLinkActive="router-link-active"  (click)="openLabel()" id="lable">
+            <mat-icon id="edit">edit</mat-icon>
+            Edit label
+          </mat-list-item>
+
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem" routerLinkActive="router-link-active"  id="arch" (click)="archieve()" >
+            <img id="img4" src="../../../assets/image/archieve.svg" />
+            Archive</mat-list-item>
+
+          <mat-list-item role="listitem"  routerLinkActive="router-link-active"  id="bin" (click)="openTrash()" (click)="trash()">
+            <img id="img5" src="../../../assets/image/bin.svg" />
+            Trash</mat-list-item>
+
+          <!-- [routerLink]="['/trash']" -->
+
+        </mat-list>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+       <!-- <app-maincard (messageEvent)="recieveMessage($event)" ></app-maincard> -->
+      <!-- <app-content></app-content>  -->
+      <!-- <app-note></app-note> -->
+      <!-- <app-trash></app-trash> -->
+      <!-- <app-archieve></app-archieve>
+     <app-search></app-search> 
+      <app-update-note></app-update-note> -->
+      <!-- <app-search></app-search>  -->
+      <!-- <app-remainder></app-remainder> -->
+      <!-- <app-edit-lable></app-edit-lable> -->
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

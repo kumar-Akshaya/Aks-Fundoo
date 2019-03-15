@@ -1,0 +1,76 @@
+.empty{
+    color: rgb(40, 40, 238);
+    cursor: pointer;
+    // margin-left: 10px;
+    
+}
+
+// note card css
+.matcard{
+   
+    margin-top: 20px;
+}
+
+
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.maincard{
+    width: 60%;
+    color: rgb(173, 166, 166);
+    //margin-top: 30px;
+}
+
+
+
+
+
+.minicard{
+    // background-color: rgb(243, 229, 229);
+    margin-top: 10px;
+    height: 100px;
+    width: 220px;
+   
+}
+
+
+
+
+
+.icons-div{
+    // margin-left: 18%;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+.main{
+    background-color: green;
+    margin-top: 10px;
+    height: 150px;
+    width: 280px; 
+}
+.mininote{
+    margin-left: 15%;
+    width: 90%;
+}
+
+.noteTrash{
+    margin-top: 20px;
+}
+.trnote{
+    margin-left: 15%;
+    width: 90%;
+}
+
+.trashTitle{
+    margin-top: 10px;
+    font-family: sans-serif;
+   font-size: 20px;
+}
+.trashDescription{
+    margin-top: 15px;
+}

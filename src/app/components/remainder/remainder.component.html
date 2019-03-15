@@ -1,0 +1,25 @@
+<!-- 
+  <div *ngFor="let index of dateArray">
+    <mat-chip-list>
+        <div *ngIf ="(today | date : shortDate)==(index|date:shortDate)">
+        <mat-chip>Today {{index|date:'shortTime'}}
+            <mat-icon (click)="cancel()" matChipRemove>cancel</mat-icon>
+        </mat-chip>
+    </div>
+    <div *ngIf ="(tomorrow | date : shortDate)==(index|date:shortDate)">
+            <mat-chip> Tomorrow {{index|date:'shortTime'}}
+                <mat-icon (click)="cancel()" matChipRemove>cancel</mat-icon>
+            </mat-chip>
+        </div>
+        <div *ngIf ="(today | date : shortDate)!=(index|date:shortDate)&&
+        (tomorrow | date : shortDate)!=(index|date:shortDate)">
+                <mat-chip>{{index|date:'medium'}}
+                    <mat-icon (click)="cancel()" matChipRemove>cancel</mat-icon>
+                </mat-chip>
+            </div>
+    </mat-chip-list>
+</div>
+
+  <app-note [arrayCards]="reminderArray">
+
+  </app-note> -->

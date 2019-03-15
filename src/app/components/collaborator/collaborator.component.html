@@ -1,0 +1,77 @@
+<div class="padding">
+  <div class="collaborator">
+    <h3>Collaborators</h3>
+  </div>
+
+
+  <div fxLayout="row">
+    <div class="nameDivision">
+      <!-- <div *ngIf="image!=''">
+        <img src="" class="image">
+      </div> -->
+      <button mat-mini-fab color="primary" class="userlatter">
+        {{firstName | slice:0:1}}
+      </button>
+    </div>
+    <div fxLayout="column" class="top">
+      <div class="nameDivision1">
+        <span>{{firstName}} {{lastName}} (Owner)</span>
+      </div>
+      <div class="nameDivision2">
+        {{email}}
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="row" *ngFor="let data of collaborator" class="nameDivision">
+    <div fxFlex=2.5>
+      <button class="names" mat-mini-fab color="primary">
+        {{data.firstName | slice:0:1}}</button>
+    </div>
+    <div fxFlex=95 fxLayout="column">
+      <div class="nameDivision3">
+        <span> {{data.firstName | titlecase}}</span>
+      </div>
+      <div class="nameDivision4">
+        {{data.email}}
+      </div>
+    </div>
+    <div fxFlex=2.5 class="close">
+      <mat-icon (click)="deleteCollaborator(data)">close</mat-icon>
+    </div>
+  </div>
+
+
+
+  <div fxLayout="row" class="nameDivision">
+    <div fxflex=2.5><button class="names" mat-mini-fab disabled><i class="material-icons">
+          person_add
+        </i></button></div>
+    <div fxFlex="95">
+      <mat-form-field>
+        <input matInput class="reset" [formControl]="searchWord" [matMenuTriggerFor]="datas"
+          placeholder="Person or Email To Share With">
+      </mat-form-field>
+    </div>
+    <div fxFlex=2.5 class="close">
+      <mat-icon (click)="search()" >done</mat-icon>
+    </div>
+  </div>
+  <mat-menu #datas="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item *ngFor="let item of userList | slice:0:6"
+      (click)="save(item);select(item.email)" (click)="addLine(searchword)">{{item.firstName}}
+      <{{item.email}}> </button>
+  </mat-menu>
+
+  <div class="buttonscolor">
+    <div class="buttons" fxLayout="row" fxLayoutAlign="end" fxLayoutAlign="space-between">
+      <div>
+        <button mat-button (click)="close()">Cancel</button>
+      </div>
+      <div>
+        <button mat-button (click)="close()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

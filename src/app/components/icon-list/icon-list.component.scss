@@ -1,0 +1,148 @@
+// note card css
+.matcard{
+   
+    margin-top: 20px;
+}
+.Border{
+    border-color: white;
+}
+
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.maincard{
+    width: 60%;
+    color: rgb(173, 166, 166);
+    //margin-top: 30px;
+}
+
+.colorslist{
+    height: 30px;
+    widows: 30px;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.remaindMenu{
+    min-width: 250px;
+    max-width: 300px;
+    margin-left: 2px;
+}
+.pickDate{
+    width: 50%;
+    
+}
+
+
+// .pickdate{
+//     #arrowSymbol{
+       
+//     }
+//     #pickAdjust{
+    
+//     }
+// }
+
+
+
+// main card
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.white{
+    background-color: rgb(224, 224, 224);
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
+.red{
+    
+    margin-left: 8px;
+}
+.orange{
+ 
+ margin-left: 8px;
+}
+.yellow{
+ 
+ margin-left: 8px;
+ margin-right: 8px;
+}
+.green{
+   
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
+.teal{
+ 
+  margin-left: 8px;
+}
+.blue{
+  size: 1px;
+    margin-left: 8px;
+}
+.darkblue{
+
+margin-left: 8px;
+}
+.purple{
+
+margin-left: 8px;
+margin-bottom: 10px;
+}
+.pink{
+ 
+ margin-left: 8px;
+}
+.Brown{
+
+margin-left: 8px;
+}
+.gray{
+
+margin-left: 8px;
+}
+
+.matcard{
+    margin-top: 30px;
+}
+.Border :focus{
+    outline: white;
+}
+element.style {
+    border-color: white;
+
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+
+.title{
+    margin-bottom: 20px;
+    color: rgb(173, 166, 166);
+    
+  
+    
+}
+
+.takenote{
+    margin-bottom: 10px;
+    color: rgb(173, 166, 166);
+}
+
+
