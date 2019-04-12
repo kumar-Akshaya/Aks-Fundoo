@@ -1,0 +1,52 @@
+.mainCartCard{
+    background-color: #E0E0E0;
+    cursor: pointer;
+    height: 100%;
+    width : 200px;
+   }
+
+.mainCartCard:hover{
+ background-color:#FFFF00;
+ cursor: pointer;
+}
+
+
+.hoverCard { transition: all .2s ease-in-out;}
+.hoverCard:hover { transform: scale(1.1);
+transition: 0.5}
+
+.spacing1{
+    margin-top: 20px;
+}
+
+.payment{
+    font-size: 120%;
+    font-weight: 600;
+}
+ .lists{
+   font-size: 100%;
+   font-weight: bold;
+}
+.spacing{
+    margin-top: 10px;
+}
+.selection{
+    color: blue;
+}
+.paymentCard{
+    height: 100%;
+    width : 200px;
+    margin-left: -47px;
+}
+.signAnchor{
+    color: blue;
+    font-size: 120%;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+.addCart{
+    font-size: 120%;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}

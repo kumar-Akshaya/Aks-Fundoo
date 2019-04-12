@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <mat-toolbar class="serviceTool">
+     <div fxLayout="row" fxLayoutAlign="start start" class="packHead">
+       Advance pack Details
+     </div>
+     <div fxFlexOffset=50  class="packHead" *ngIf="data.majorService !=undefined">
+    ${{data.majorService}}/month
+     </div>
+     <div fxFlexOffset=50  class="packHead" *ngIf="data.minorService !=undefined"> ${{data.minorService}}/month</div>
+    </mat-toolbar>
+  </div>
+  <div>
+    <mat-tab-group class="tabGroup">
+      <mat-tab label="Feature 1"> Supports CheckList </mat-tab>
+      <mat-tab label="Feature 2"> Color Notes & Lable</mat-tab>
+      <mat-tab label="Feature 3"> Supports Image Note </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start end" class="mainButton">
+    <div class="removeButton">
+      <button type="button" (click)="remove()">Remove</button>
+    </div>
+    <div fxFlexOffset="60" fxFlexOffset.xs="20" fxFlexOffset.sm="30" fxFlexOffset.md="40">
+      <button type="button" (click)="checkOut()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+</div>

@@ -5,6 +5,11 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchService {
+  private gridMessage = new BehaviorSubject(false);
+  gridCurrentMessage = this.gridMessage.asObservable();
+
+
+
   private messageSource = new Subject();
   private msgSource = new BehaviorSubject(false);
   private idSource = new Subject();
@@ -13,7 +18,8 @@ export class SearchService {
   idSourceMsg = this.idSource.asObservable();
   viewList = this.messageSource.asObservable();
   constructor() { }
-  changeMessage(message: string) {
+  changeMessage(message: any) {
+    console.log("change message ",message)
       this.messageSource.next(message)
     }
     sendMessage(message: boolean) {
@@ -24,6 +30,15 @@ export class SearchService {
     }
     idMessage(message: string){
       this.idSource.next(message);
+    }
+    changeMsg(message: boolean) {
+      this.msgSource.next(message);
+    }
+
+    changeGridMsg(message:any){
+      console.log(message);
+      
+      this.gridMessage.next(message)
     }
 }
 

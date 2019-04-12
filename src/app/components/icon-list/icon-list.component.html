@@ -1,20 +1,75 @@
-<div fxLayout="row" fxLayoutAlign="space-around start" fxFlex="50">
-  <div *ngIf="clicked==false">
-    <button id="Remaind" matTooltip="Remaind me" mat-icon-button [matMenuTriggerFor]="menu4">
-      <!-- <mat-icon>notification_important</mat-icon> -->
-      <img src="../../../assets/image/outline-notification_important-24px (1).svg"/>
-    </button>
+<div fxLayout="row"fxLayoutAlign="space-around center" >
+<!-- *********************Reminder Icon Display*************************** -->
+<button  mat-icon-button [matMenuTriggerFor]="menu10">
+  <mat-icon class="space" style="cursor : pointer;"  >
+    <i class="material-icons" matTooltip="Remind me">
+        touch_app
+    </i></mat-icon>
+</button>
+   <!-- **********************Reminder Menu Display ****************** -->
+   <div >
+    <mat-menu #menu10="matMenu" class="remainderMenu">
+      <div fxLayout='column'>
+        <div fxFlexOffset='8'>
+          Reminder:
+        </div>
+        <div>
+          <button mat-menu-item [matMenuTriggerFor]="date">Select Date and Time</button>
+        </div>
+        <div>
+          <button mat-menu-item (click)="addReminderTody(card)">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div>Later today</div>
+              <div fxFlexOffset='20'>20:00</div>
+            </div>
+          </button>
+        </div>
+        <div>
+          <button mat-menu-item (click)="addReminderTomorrow(card)">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div>Tomorrow </div>
+              <div>8:00</div>
+            </div>
+          </button>
+        </div>
+
+
+      </div>
+    </mat-menu>
+    <!-- for min    [min]="newDate.time" -->
+    <mat-menu #date="matMenu">
+      <div class="min-time-example" (click)="$event.stopPropagation()" fxLayout="row" fxLayoutAlign="center">
+        <div> <input [(ngModel)]="newDate.time"  [ngxTimepicker]="min" readonly>
+          <ngx-material-timepicker #min>
+            <mat-icon matSuffix>access_time</mat-icon>
+          </ngx-material-timepicker>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <button mat-menu-item (click)="$event.stopPropagation()" #picker>
+          <mat-form-field class="example-full-width">
+            <input matInput [min]="minDate" [max]="maxDate" fxFlex='100' [matDatepicker]="picker"
+              placeholder="Choose a date" [(ngModel)]="newDate.date" autocomplete="off" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </button>
+      </div>
+
+      <div>
+        <button mat-button (click)="addReminder(card)">Save</button>
+      </div>
+    </mat-menu>
+
   </div>
-  <div *ngIf="clicked==true">
+
+  
+  <!-- <div *ngIf="clicked==true">
     <button id="Remaind" matTooltip="Remaind me" mat-icon-button [matMenuTriggerFor]="timedate">
       <mat-icon>notification_important</mat-icon>
     </button>
   </div>
-  <!-- <button  *ngIf="clicked==false"  id="Remaind" matTooltip="Remaind me" mat-icon-button [matMenuTriggerFor]="timedate" >
-      <mat-icon>notification_important</mat-icon>
-    </button> -->
-
-
+  
   <mat-menu #menu4="matMenu" class="matmenu" >
     <div class="remaindMenu" (click)="$event.stopPropagation()" >
       <mat-nav-list >
@@ -74,91 +129,11 @@
        <button mat-stroked-button (click)="dataSave()">Save</button>
      </mat-list-item>
     </div>
-  </mat-menu>
-
-
-
-  <!--                 
-                <div class="menu6">
-                <mat-menu #menu6="matMenu">
-                 
-                    <mat-nav-list>
-                        <mat-list role="List">
-                  <div class="pickdate">
-                    <mat-list-item id="arrowSymbol">
-                    <button  mat-menu-item >
-                        <mat-icon>
-                            <img src="../../../assets/image/outline-keyboard_backspace-24px.svg"/>
-                          </mat-icon>
-                    </button>
-                  </mat-list-item>
-                  <mat-list-item id="pickAdjust">
-
-                      <span>Pick date and Time </span>
-                     </mat-list-item>
-                  
-                    </div>
-
-                    <mat-list-item>
-                        <mat-form-field class="example-full-width">
-                          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                          <mat-datepicker-toggle matSuffix [for]="picker">
-                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                          </mat-datepicker-toggle>
-                          <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                          </mat-list-item>
-                  
-                    <button mat-menu-item [matMenuTriggerFor]="menu9">Pick date and Time </button>
-                    <mat-menu #menu9="matMenu">
-                        <button mat-menu-item>
-                          <span>Morning<span class="time8"> 8:00AM</span></span>
-                        </button>
-                        <button mat-menu-item >
-                          <span>Afternoon    1:00PM</span>
-                        </button>
-                        <button mat-menu-item>
-                          <span>Evening 6:00PM</span>
-                        </button>
-                        <button mat-menu-item>
-                          <span>Night 8:00PM</span>
-                        </button>
-                        <button mat-menu-item>
-                          <span>Custom</span>
-                        </button>
-                      </mat-menu>
-                    <mat-list-item>
-                      <button mat-menu-item [matMenuTriggerFor]="menu10">Does not repeat</button>
-                       <mat-menu #menu10="matMenu">
-                         <button mat-menu-item>
-                           <span>Does not repeat</span>
-                         </button>
-
-                         <button  mat-menu-item >
-                            <span>Daily</span>
-                          </button>
-                         <button  mat-menu-item >
-                           <span>weekly</span>
-                         </button>
-                         <button  mat-menu-item >
-                           <span>monthly</span>
-                         </button>
-                         <button  mat-menu-item >
-                           <span>yearly</span>
-                         </button>
-                         <button  mat-menu-item >
-                            <span>Custom</span>
-                          </button>
-                       </mat-menu>
-                     
-                    </mat-list-item>
-
-                    </mat-list>
-                  </mat-nav-list>
-                   
-                  </mat-menu>
-                </div>
+  </mat-menu> 
  -->
+
+
+  
 
 
 
@@ -196,10 +171,20 @@
     <img src="../../../assets/image/outline-insert_photo-24px.svg"/>
   </button>
 
-  <button matTooltip="Archieve" (click)="archive()" mat-icon-button>
-    <!-- <mat-icon>archive</mat-icon> -->
+  <div  >
+      <mat-icon class="space" style="cursor:pointer" matTooltip="Archive" 
+      (click)="addArchive()">
+        archive</mat-icon> 
+    </div>
+      <!-- <div *ngIf="card.isArchived==true">
+      <mat-icon class="space" style="cursor:pointer" matTooltip="Unarchive" 
+      (click)="unArchive()">
+        unarchive</mat-icon>
+    </div> -->
+
+  <!-- <button matTooltip="Archieve" (click)="archive()" mat-icon-button>
     <img src="../../../assets/image/archieve.svg"/>
-  </button>
+  </button> -->
 
   <button mat-icon-button [matMenuTriggerFor]="menu2" matTooltip="more">
     <mat-icon>more_vert</mat-icon>

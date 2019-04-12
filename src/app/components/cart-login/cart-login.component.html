@@ -1,0 +1,135 @@
+<div>
+  <div fxLayout="row wrap" fxLayoutAlign="center center" class="matCart">
+    <mat-card fxFlex=30 fxFlex.xs=100 fxFlex.md=100 >
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div class="LoginFundoo" fxLayout="row">
+          <span class="F">F</span>
+          <span class="u">u</span>
+          <span class="n">n</span>
+          <span class="d">d</span>
+          <span class="o">o</span>
+          <span class="o1">o</span>
+        </div>
+        <div class="LoginSign">
+          Sign In
+        </div>
+        <div class="textFun">
+          Continue to Fundoo
+        </div>
+        <div fxlayout="row" fxLayoutAlign="start start" fxFlex.lg=100 fxFlex.xs=100 class="cartEmail">
+          <mat-form-field appearance="standard" class="cartEmail">
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="email" autocomplete="off" required>
+            <mat-error *ngIf="email.hasError('required')">Please, enter the email id</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxlayout="row" fxLayoutAlign="start start" fxFlex.lg=100 fxFlex.xs=70>
+          <mat-form-field appearance="standard" class="cartpassword">
+            <mat-label>password</mat-label>
+            <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'" autocomplete="off" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="password.hasError('required')">Enter your password</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <div fxlayout="row" fxLayoutAlign="end end" class="signButtond">
+          <button mat-raised-button color="primary" (click)="Login()" type="button">Log In
+          </button>
+        </div>
+        <ngx-ui-loader></ngx-ui-loader>
+        <div fxlayout="column" fxLayoutAlign="start end ">
+          <div>
+            <mat-error>{{message}}</mat-error>
+            <span class="cartFor" (click)="Forgot()">
+              <i>Forgot password?</i>
+            </span>
+          </div>
+          <div>
+            <span class="cartFor" (click)="Create()">
+              <i>Create One</i>
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+    <!-- <div class="secondCard">
+        <app-service-card ></app-service-card>
+    </div> -->
+  
+    <mat-card class="secondCard" fxFlex=35 fxFlex.xs=100 fxFlex.md=100 *ngIf="isChoosed==true">
+      <div fxLayout="row" fxLayoutAlign="center start" class="servicehead">
+        Service
+      </div>
+      <div>
+        <div fxLayout="row"  fxLayoutAlign="center center" fxFlex.lg=90 fxFlex.md=90 class="hoverDiv">
+          <div class="hoverCard" fxFlexOffset=7 fxFlexOffset.xs=2 (click)="openServicePack()">
+            <mat-card class="mainCartCard">
+              <mat-card class="paymentCard">
+
+                <span class="payment">
+                  Price : $99 per month
+                </span>
+                <div class="spacing">
+                  <a type="button"><i class="selection">Advance</i></a>
+                </div>
+
+                <ul class="lists">
+                  <li>
+                    $99/month
+                  </li>
+                  <li class="spacing">
+                    Ability to add title, description, image, label, CheckList, and color
+                  </li>
+
+                </ul>
+
+              </mat-card>
+              <div fxLayout="column" fxLayoutAlign="center center" class="addCart" >
+               <span>ADD TO CART</span> 
+               
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center center" class="addCart" >
+              <span>Selected</span>
+              </div>
+            </mat-card>
+          </div>
+          <div class="hoverCard" fxFlexOffset=7 fxFlexOffset.xs=2 (click)="openServicePack1()">
+            <mat-card class="mainCartCard">
+              <mat-card class="paymentCard">
+                <span class="payment">
+                  Price : $49 per month
+                </span>
+                <div class="spacing1">
+                  <a type="button"><i class="selection">Basic</i></a>
+                </div>
+
+                <ul class="lists">
+                  <li>
+                    $49/month
+                  </li>
+                  <li class="spacing">
+                    Ability to add only title and description
+                  </li>
+
+                </ul>
+
+              </mat-card>
+              <div fxLayout="column" fxLayoutAlign="center center" class="addCart" >
+              <span> ADD TO CART</span> 
+              
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center center" class="addCart" >
+               <span>Selected</span>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+

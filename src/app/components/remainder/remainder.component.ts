@@ -27,6 +27,7 @@ export class RemainderComponent implements OnInit {
     this.notesService.getReminder().subscribe(
         (data) => {
           this.reminderArray = data['data'].data;
+          console.log("remainder Array ", this.reminderArray)
           this.reminderArray.sort((a: any, b: any) =>
             new Date(a.reminder).getTime() - new Date(b.reminder).getTime()
           )

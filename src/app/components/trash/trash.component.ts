@@ -14,10 +14,10 @@ export class TrashComponent implements OnInit {
 
   ngOnInit() {
     this.getTrashCard();
+    console.log("items ")
   }
 @Input() card ;
   getTrashCard(){
-   
     this.noteService.getTrash().subscribe(data => {
       this.trashcards= data['data']['data'];
       this.trashcards.reverse();
@@ -29,15 +29,25 @@ export class TrashComponent implements OnInit {
     )
   }
 
-  removeNotes(){
-    this.noteService.deleteNotes({
-      'data' : this.trashcards
-    }).subscribe(result =>{
-      this.allcards = result['data']['data'];
-      console.log("Delete all cards",this.allcards);
-    })
-  }
+  deleteForever(card) {
+    console.log("card ----", card)
+  this.noteService.foreverTrash({
+    "isDeleted": false,
+    "noteIdList": [card]
+  })
+  .subscribe(data => {
+    this.getTrashCard()
+  })
+}
 
- 
+postToTrash(card) {
+  this.noteService.postTrash( {
+    "isDeleted": false,
+    "noteIdList": [card]
+  })
+  .subscribe(data => {
+    this.getTrashCard()
+  })
+}
 
 }

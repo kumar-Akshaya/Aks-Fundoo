@@ -25,8 +25,7 @@ export class CollaboratorComponent implements OnInit {
   image = localStorage.getItem('image');
   userId = localStorage.getItem('userId');
   email = localStorage.getItem('email');
-  // img = environment.apiUrl + this.image;
-  // owner = this.data["user"]
+ 
   constructor(public dialogRef: MatDialogRef<CollaboratorComponent>, @Inject(MAT_DIALOG_DATA) public data1: DialogData,
     private noteService: NoteServiceService, public userService: UserServiceService,
     private dialog: MatDialog, private snackBar: MatSnackBar, private dataService: SearchService,  @Inject(MAT_DIALOG_DATA) public data: any)
@@ -39,17 +38,18 @@ export class CollaboratorComponent implements OnInit {
   }
 
   close(): void {
-    console.log(this.id);
-    const dialogRef = this.dialog.open(EditCardComponent, {
-      width: 'fit-content',
-      maxWidth: 'auto',
-      // data: this.data
-
-    });
-    dialogRef.afterClosed().subscribe(() => {
-
-    });
     this.dialogRef.close();
+    // console.log(this.id);
+    // const dialogRef = this.dialog.open(EditCardComponent, {
+    //   width: 'fit-content',
+    //   maxWidth: 'auto',
+    //   // data: this.data
+
+    // });
+    // dialogRef.afterClosed().subscribe(() => {
+
+    // });
+    // this.dialogRef.close();
 
 
 
@@ -69,6 +69,8 @@ export class CollaboratorComponent implements OnInit {
   }
 
   deleteCollaborator(item) {
+    console.log("item.userId", item.userId, "this.id", this.id);
+    
     this.noteService.collaboratorDelete(this.id, item.userId)
       .subscribe(response => {
         for (let i = 0; i < this.collaborator.length; i++) {

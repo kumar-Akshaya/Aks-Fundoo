@@ -16,6 +16,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.data.currentMessage.subscribe(message => {
+      console.log(message);
+      
       this.Search = message;
     })
     this.getNotes();

@@ -1,0 +1,133 @@
+
+<div>
+  <div fxLayout="row" fxLayoutAlign="center center" class="matCart" fxFlex.lg=100 fxFlex.md=90 fxFlex.sm=80 fxFlex=100> 
+    <mat-card fxFlex=45 fxFlex.xs="98">
+        <div fxLayout="row" fxLayoutAlign="end start" >
+            <button type="button" (click)="showCart()" class="goto" >
+              <span class="textbutton">go to cart</span></button>
+           </div>
+      <div fxLayout="row" fxLayoutAlign="center center" >
+        <div class="signFundoo" fxLayout="row">
+         <span class="F">F</span>
+         <span class="u">u</span>
+         <span class="n">n</span>
+         <span class="d">d</span>
+         <span class="o">o</span>
+         <span class="o1">o</span>
+        </div>
+      
+      </div>
+      <div class="cartSign" fxLayout="column" fxLayoutAlign="start start">
+        Create your Fundoo Account 
+       </div>
+       <div>
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center"   >
+       <mat-form-field fxFlex.xs="100" appearance="standard" class="cartfirst">
+        <mat-label>first name</mat-label>
+        <input matInput  [formControl]="firstname">
+      </mat-form-field>
+
+      <div  fxLayout="row" fxLayoutAlign="end center">
+        <mat-form-field appearance="standard" class="cartlast"  fxLayout.xs="column">
+          <mat-label >last name</mat-label>
+          <input matInput  [formControl]="lastname" >
+        </mat-form-field>
+      </div>
+    </div>
+    </div>
+    <div fxLayout="column"  >
+      <mat-form-field appearance="standard" class="cartEmail"  fxLayout.xs="column">
+        <mat-label>email</mat-label>
+        <input matInput  [formControl]="username">
+      </mat-form-field>
+    </div>
+    <div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center"  >
+        <mat-form-field appearance="standard"  class="cartfirst"  fxLayout.xs="column">
+         <mat-label>password</mat-label>
+         <input matInput  [formControl]="password">
+       </mat-form-field>
+ 
+       <div  fxLayout="row" fxLayoutAlign="end center">
+         <mat-form-field appearance="standard" class="cartlast"  fxLayout.xs="column">
+           <mat-label>confirm password</mat-label>
+           <input matInput [type]="hide ? 'password' : 'text'"  [formControl]="confirm" >
+           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+         </mat-form-field>
+       </div>
+     </div>
+    </div>
+
+    <div fxLayout="column">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center"  fxFlex.lg=90 fxFlex.md=90 > 
+        <div class="hoverCard" fxFlexOffset=7 fxFlexOffset.xs=2 >
+          <mat-card class="mainCartCard" >
+        <mat-card class="paymentCard">
+    
+          <span class="payment">
+            Price : ${{servicePrice}} per month
+          </span>
+          <div class="spacing">
+            <a type="button"><i class="selection">{{serviceName}}</i></a>
+          </div>
+    
+          <ul class="lists">
+            <li>
+              ${{servicePrice}}/month
+            </li>
+            <li class="spacing">
+             {{serviceDescription}}
+            </li>
+    
+          </ul>
+    
+        </mat-card>
+        <div fxLayout="column" fxLayoutAlign="center center" class="addCart" *ngIf="serviceSelected!=serviceId">
+          ADD TO CART
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center" class="addCart" *ngIf="serviceSelected==serviceId">
+          Selected
+        </div>
+      </mat-card>
+    </div>
+    <div class="hoverCard"  fxFlexOffset=7 fxFlexOffset.xs=2  >
+      <mat-card class="mainCartCard" >
+          <mat-card class="paymentCard" >
+              <span class="payment" >
+                Price : ${{servicePrice2}} per month
+              </span>
+              <div class="spacing1">
+                <a type="button"><i class="selection">{{serviceName2}}</i></a>
+              </div>
+        
+              <ul class="lists">
+                <li>
+                  ${{servicePrice2}}/month
+                </li>
+                <li class="spacing">
+                {{serviceDescription2}}
+                </li>
+        
+              </ul>
+        
+            </mat-card>
+            
+              <div fxLayout="column" fxLayoutAlign="center center" class="addCart" *ngIf="serviceSelected !=serviceId2">
+                ADD TO CART
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center center" class="addCart" *ngIf="serviceSelected==serviceId2">
+                Selected
+              </div>
+      </mat-card>
+      </div>
+      </div>
+    </div>
+    <div   fxLayout="row" fxLayoutAlign="start end"   class="signAnchor" (click)="SignIn()">
+      SignIn insted
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end end" class="SignInCart">
+        <button mat-raised-button color="primary" (click)="register()">Sign In</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

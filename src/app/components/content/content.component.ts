@@ -11,7 +11,9 @@ export class ContentComponent implements OnInit {
 
   
   constructor( ) { }
-
+gridView={
+  
+}
   ngOnInit() {
   }
  

@@ -14,13 +14,14 @@
 import { Component, OnInit, ChangeDetectorRef, Inject, ViewChild, ElementRef, EventEmitter, Output } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { EditLableComponent } from '../edit-lable/edit-lable.component';
 import { MatSnackBar } from '@angular/material'
 import { SearchService } from '../../service/searchService/search.service';
 import { ViewchangeService } from '../../service/viewchange.service';
 import { NoteServiceService } from '../../service/note-service.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { ImageCropComponent } from '../image-crop/image-crop.component';
 // export interface DialogData {
 //   data: "akshaya"
 // }
@@ -32,9 +33,6 @@ import { NoteServiceService } from '../../service/note-service.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-
-
-
 
 export class DashboardComponent implements OnInit {
   mobileQuery: MediaQueryList;
@@ -48,9 +46,13 @@ export class DashboardComponent implements OnInit {
   private title = "Keep";
   private _mobileQueryListener: () => void;
   routerColor: any;
-
+  private picture: any;
+  firstName =localStorage.getItem('firstName');
+  lastName = localStorage.getItem('lastName');
+  email=localStorage.getItem('email');
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router,
-    public dialog: MatDialog, private data: SearchService, private snackBar: MatSnackBar, private viewChange : ViewchangeService, private notesService: NoteServiceService ) {
+    public dialog: MatDialog, private data: SearchService, private snackBar: MatSnackBar, private viewChange : ViewchangeService, 
+    private notesService: NoteServiceService, private ngxService: NgxUiLoaderService ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -59,7 +61,13 @@ export class DashboardComponent implements OnInit {
     this.labelArray = [];
     this.getLabels();
     this.title=localStorage.getItem('title');
+    this.ngxService.start(); // start foreground spinner of the master loader with 'default' taskId
+    // Stop the foreground loading after 5s
+    setTimeout(() => {
+      this.ngxService.stop(); // stop foreground spinner of the master loader with 'default' taskId
+    }, 3000);
   }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
@@ -73,7 +81,10 @@ export class DashboardComponent implements OnInit {
     console.log("event data..", this.message);
   }
 
-
+Logout(){
+  this.router.navigate(['cart']);
+  localStorage.clear();
+}
 
   isclick() {
     return false;
@@ -93,6 +104,31 @@ export class DashboardComponent implements OnInit {
     });
 
   }
+  selectedFile = null;
+  private image2 = localStorage.getItem('imageUrl');
+  // img = environment.apiUrl + this.image2;
+
+  onFileUpload(event) {
+    this.profileCropOpen(event);
+    this.selectedFile = event.path[0].files[0];
+    const uploadData = new FormData();
+    uploadData.append('file', this.selectedFile, this.selectedFile.name);
+  }
+
+  profileCropOpen(data): void {
+    const dialogRefPic = this.dialog.open(ImageCropComponent, {
+      width: '450px',
+      data: data
+    });
+    dialogRefPic.afterClosed().subscribe(() => {
+      this.data.currentMsg.subscribe(message => this.picture = message);
+      if (this.picture == true) {
+        this.image2 = localStorage.getItem('imageUrl');
+        // this.img = environment.apiUrl + this.image2;
+      }
+    });
+  }
+
   getLabels() {
     let newArray = [];
     this.notesService.getLabels()
@@ -124,7 +160,7 @@ export class DashboardComponent implements OnInit {
   }
 
   signout() {
-    this.router.navigate(['login']);
+    this.router.navigate(['cart']);
     localStorage.clear();
   }
   alert = "Note Archieved";
@@ -135,9 +171,10 @@ export class DashboardComponent implements OnInit {
     this.titleName="Note"
     this.router.navigate(['dashboard','note'])
   }
+
   Reminder(){
     this.titleName="Reminder";
-    // this.router.navigate(['dashboard','Reminder']);
+     this.router.navigate(['dashboard','Reminder']);
   }
   // select(labels) {
   //   let label = labels.label;
@@ -163,9 +200,9 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  Change(){
-    this.viewChange.onViewchange();
-  }
+  // Change(){
+  //   this.viewChange.onViewchange();
+  // }
   
 
   goSearch() {
@@ -178,16 +215,19 @@ export class DashboardComponent implements OnInit {
 
   grid(){
    this.isClicked = !this.isClicked;
-  
+   this.data.changeGridMsg(this.isClicked);
   }
 
-  listView() {
-    this.data.sendMessage(true);
+  // listView() {
   
-  }
-  gridView() {
-    this.data.sendMessage(false);
+  // }
+  // gridView() {
+  //   this.data.changeGridMsg(false);
     
+  // }
+
+  gotoCart(){
+    this.router.navigate(['dashboard/shopingCart']);
   }
 
 }

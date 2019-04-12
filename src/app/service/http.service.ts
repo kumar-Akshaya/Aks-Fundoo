@@ -21,6 +21,17 @@ export class HttpService {
    return this.http.post(url,body,httpOptions)
   }
 
+  postJSON1(url: string, body: any): any {
+    url=this.baseUrl+url;
+    console.log()
+    const httpOptions={
+      headers : new HttpHeaders({
+      'const-Type' : 'application/json',
+      })
+    }
+    return this.http.post(url,body,httpOptions)
+   }
+
   getJSON(url) {
     url = this.baseUrl + url;
     const httpOptions = {
@@ -76,6 +87,7 @@ export class HttpService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization' : localStorage.getItem('token')
       })
     };
     return this.http.get(url, httpOptions)
@@ -101,9 +113,26 @@ getHttp(url){
 }
   return this.http.get(this.baseUrl+url,httpToken);
 }
-deleteTheLabel(url) {
+httpAddImage(url, body, token){
   url = this.baseUrl + url;
-  return this.http.delete(url);
+  var httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': token
+    })
+  };
+  return this.http.post(url, body, httpOptions)
 }
+deletecollaborator(url){
+  url = this.baseUrl + url;
+  var httpOptions = {
+    headers : new HttpHeaders({
+      'content-Type' : 'application/json',
+      'Authorization' : localStorage.getItem('token')
+    })
+  }
+  return this.http.delete(url);
+  };
+  // return this.http.post(url, body, httpOptions)
+
 
 }

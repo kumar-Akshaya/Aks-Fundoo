@@ -16,8 +16,16 @@
           </div>
       </div><br>
   </div>
+
+  <mat-chip-list #chipList *ngIf="data.reminder?.length>0">
+    <mat-chip>
+      {{data.reminder[0] | date:'d'}}{{data.reminder[0] | date:'MMM '}}{{data.reminder[0] | date:'shortTime'}}
+      <mat-icon matChipRemove (click)="removeReminder(data)">cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
   <div fxFlex="30" fxLayout="row" fxLayoutAlign="space-between end" fxLayoutGap="50px">
-      <app-icon-list ></app-icon-list>
+      <app-icon-list [card]=data ></app-icon-list>
     <button  mat-button  mat-dialog-close (click)="save()"><span class="close-button">Close</span></button>
   </div>
 
@@ -30,25 +38,4 @@
 
 
 
-<!-- <div  class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98"
-  fxLayoutGap="20px grid" fxFlex="80">
-
-  <div *ngFor="let item of items   ">
-      <mat-card class="minicard" [style.backgroundColor]="items.color">
-        <div>
-          <div fxLayout="row">
-            <div >{{item.title}}</div>
-           
-            </div>
-          </div>
-
-          <div>{{item.description}}</div>
-          <div class="icons-div">
-            <app-icon-list fxLayout="row" [card]="item" fxLayoutAlign="space-between end"  >
-
-            </app-icon-list>
-          </div>
-      </mat-card>
-    </div>
-    </div> -->
   

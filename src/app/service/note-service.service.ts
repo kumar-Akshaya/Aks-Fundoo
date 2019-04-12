@@ -27,7 +27,7 @@ export class NoteServiceService {
     return this.httpService.postJSON('notes/' + trashId + '/addLabelToNotes/' + labelId + '/add', body)
   }
   deleteLabel(id) {
-    return this.httpService.deleteTheLabel('/noteLabels/' + id + '/deleteNoteLabel')
+    return this.httpService.deletecollaborator('/noteLabels/' + id + '/deleteNoteLabel')
   }
     getcard(){
          return this.httpService.getHttp('notes/getNotesList');
@@ -59,6 +59,12 @@ export class NoteServiceService {
       }
       return this.http.post(this.baseUrl+'notes/trashNotes',body,httpOptions);
     }
+    foreverTrash(body) {
+      return this.httpService.postJSON('notes/deleteForeverNotes', body)
+    }
+    postTrash(body) {
+      return this.httpService.postJSON('notes/trashNotes', body)
+    }
 
     postArchive(body) {
       return this.httpService.postJSON('notes/archiveNotes', body)
@@ -68,8 +74,14 @@ export class NoteServiceService {
       return this.httpService.encodedGetForm('notes/getArchiveNotesList');
     }
 
-    getReminder(){
-      return this.httpService.getJSON('notes/getReminderNotesList');
+    reminder(body) {
+      return this.httpService.postJSON('notes/addUpdateReminderNotes', body)
+    }
+    getReminder() {
+      return this.httpService.getJSON('notes/getReminderNotesList/')
+    }
+    removeReminder(body) {
+      return this.httpService.postJSON('notes/removeReminderNotes', body)
     }
 
     sendRemainder(data : string){
@@ -81,8 +93,10 @@ export class NoteServiceService {
     }
 
     collaboratorDelete(id,userId){
-      console.log("id ", id , "userId ",userId);
-      return this.httpService.deleteTheLabel('notes/'+id+'/removeCollaboratorsNotes/'+userId);
+      return this.httpService.deletecollaborator('notes/'+id+'/removeCollaboratorsNotes/'+userId);
+    }
+    pin(body){
+      return this.httpService.postJSON('notes/pinUnpinNotes',body)
     }
 
     getAllAskedNotes(id : any ){

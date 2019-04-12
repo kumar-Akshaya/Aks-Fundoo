@@ -12,70 +12,86 @@ import { SearchComponent } from './components/search/search.component';
 import { ArchieveComponent } from './components/archieve/archieve.component';
 import { MaincardComponent } from './components/maincard/maincard.component';
 import { AskQuestionComponent } from './components/ask-question/ask-question.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartLoginComponent } from './components/cart-login/cart-login.component';
+import { CartSignUpComponent } from './components/cart-sign-up/cart-sign-up.component';
+import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
 
 const routes: Routes = [
   {
-    path : '',
-    pathMatch:'full',
-    component:  LoginComponent
-  },{
-    path : 'login',
-    component: LoginComponent
+    path: '',
+    pathMatch: 'full',
+    component: CartComponent
   },
   {
-    path : 'register',
+   path:'cart',
+   component : CartComponent
+  }, {
+    path: 'cartLogin',
+    component: CartLoginComponent
+  },
+  {
+    path : 'cartSignUp',
+    component : CartSignUpComponent
+  },
+  {
+    path: 'register',
     component: RegisterComponent
   },
   {
-    path : 'resetpassword/:token',
-    component : ResetComponent
+    path: 'resetpassword/:token',
+    component: ResetComponent
   },
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
-    children:[  
+    children: [
       {
-       path : '',
-       component : ContentComponent
-      } ,
-     
+        path: '',
+        redirectTo:'content',
+        pathMatch:'full'
+      },
+
       {
-        
-      path:'note',
-      component : NoteComponent
-    },
-      {
-        path:'content',
-        component : ContentComponent
+        path: 'note',
+        component: NoteComponent
       },
       {
-        path : 'trash',
-        component : TrashComponent
+        path: 'content',
+        component: ContentComponent
       },
       {
-        path : 'Search',
-        component : SearchComponent
+        path: 'trash',
+        component: TrashComponent
       },
       {
-        path : 'archive',
-        component : ArchieveComponent
+        path: 'Search',
+        component: SearchComponent
       },
       {
-        path : 'askQue',
-        component : AskQuestionComponent
+        path: 'archive',
+        component: ArchieveComponent
+      },
+      {
+        path: 'askQue/:noteId',
+        component: AskQuestionComponent
+      },
+      {
+        path: 'shopingCart',
+        component : ShopingCartComponent
       }
     ]
-    
+
   },
   {
-    path:'forget',
-    component:  ForgetComponent
+    path: 'forget',
+    component: ForgetComponent
   },
   {
-    path:'resetpassword/:token',
-    component:  ResetComponent
+    path: 'resetpassword/:token',
+    component: ResetComponent
   },
-    // {path: '**', redirectTo: 'login'}
+  // {path: '**', redirectTo: 'login'}
 
 ];
 

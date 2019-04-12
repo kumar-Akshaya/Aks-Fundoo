@@ -25,6 +25,7 @@ export class MaincardComponent implements OnInit {
   userId = localStorage.getItem('userId');
   token = localStorage.getItem('token');
   collaborator : any =[];
+  originalReminder = [];
   constructor(private httpService: HttpService, private router: Router, private noteService : NoteServiceService,) { }
 
   ngOnInit() {
@@ -42,8 +43,6 @@ export class MaincardComponent implements OnInit {
    addNote(){
     
      this.flag = !this.flag;
-    //  this.noteTitle=document.getElementById('noteTitle').innerHTML;
-    //  this.noteContent = document.getElementById('noteContent').innerHTML;
      if(this.noteTitle  || this.noteContent )
      {
       this.model= {
@@ -54,7 +53,7 @@ export class MaincardComponent implements OnInit {
          isPined   : false,
          isArchived : false,
          color  : this.color,
-         reminder : '',
+         reminder : JSON.stringify(this.originalReminder),
          collaberators : JSON.stringify(this.collaborator),
        }
         console.log("model data",this.model)
@@ -71,6 +70,13 @@ export class MaincardComponent implements OnInit {
       })
      }
      
+   }
+   update(value)
+   {
+     console.log('event in main card',value);
+     if(value.type=='reminder'){
+       this.originalReminder.push(value.reminder)
+     }
    }
    Changes($event){ 
      this.color=$event;

@@ -1,161 +1,207 @@
-<!-- <app-maincard></app-maincard> -->
+<div class="pinned" *ngIf="pinArray.length > 0 && unPinArray.length > 0">pined</div>
 
+<div [ngClass]="gridClass" fxLayoutGap='1%'>
+    <div class="inside" *ngFor="let items of pinArray | searchBar:Search; let i=index ">
+        <div class="align">
+            <mat-card class="mat"  class="minicard" [style.backgroundColor]="items.color">
 
+                <div fxLayout='column'>
 
-<div>
-    <div *ngIf="subscribeView" class="mininote" fxLayout="row wrap " fxLayoutAlign="center center" fxFlex.xs="98"
-        fxLayoutGap="20px grid"  fxFlex="95">
-
-        <div *ngFor="let items of cardsArray | searchBar : Search; let i = index">
-            <div [ngClass]="{'grid':toggle,'list':!toggle}">
-                <mat-card class="minicard" [style.backgroundColor]="items.color" >
-                    <div>
-                        <div fxLayout="row">
-                            <div (click)="openCard(items)">{{items.title}}</div>
-                            <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button>
-                                    <!-- <img src="../../../assets/image/pinbar.svg" > -->
-                                </button>
-                            </div>
-                        </div>
-
-                        <div (click)="openCard(items)">{{items.description}}</div>
-
-
-                        <div class="icons-div">
-                            <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
-                                (colorEmit)="Changescolor($event)" (childObject)="update($event)">
-                            </app-icon-list>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div (click)="openCard(items)" style="cursor : pointer">{{items.title}}</div>
+                        <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button (click)='unPin(items,i)'>
+                                <img src="../../../assets/image/pinbar.svg">
+                            </button>
                         </div>
                     </div>
-                    <!-- <app-add-archive [archive]="items" (archiveEmit)="deleteEvent($event)"></app-add-archive> -->
 
-                </mat-card>
-            </div>
-        </div>
-    </div>
+                    <div (click)="openCard(items)" style="cursor : pointer">{{items.description}}</div>
 
-
-
-    <div *ngIf="!subscribeView" class="mininote" fxLayout="column wrap" fxLayoutAlign="center center" fxFlex.xs="98"
-        fxLayoutGap="10px grid" fxFlex="80">
-
-        <div *ngFor="let items of cardsArray | searchBar : Search; let i = index">
-            <div [ngClass]="{'grid':toggle,'list':!toggle}">
-                <mat-card class="maxcard" [style.backgroundColor]="items.color">
-                    <div>
-                        <div fxLayout="row">
-                            <div (click)="getNoteId(items)">{{items.title}}</div>
-                            <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button>
-                                    <!-- <img src="../../../assets/image/pinbar.svg" > -->
-                                </button>
-                            </div>
+                <!-- .................collaborator display................. -->
+                    <div fxLayout="row wrap" class="spacebetween">
+                        <div *ngFor="let index of items.collaborators" (click)="openCollaboratorPage(notes)">
+                            <button mat-mini-fab class="colbutton" matTooltip={{index.email}}>
+                                {{index.firstName|slice:0:1 | uppercase }}
+                            </button>
                         </div>
-
-                        <div>{{items.description}}</div>
-                        <div class="icons-div">
-                            <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end"
-                                (colorEmit)="Changescolor($event)" (childObject)="update($event)">
-
-                            </app-icon-list>
+                    </div><br>
+                    <!-- ...............Labels display........... -->
+                    <div fxLayout="row wrap">
+                        <div *ngFor="let index of labelName">
+                            <mat-chip-list>
+                                <mat-chip>{{index.label}}
+                                    <mat-icon (click)="cancelLabel()" matChipRemove>cancel</mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
                         </div>
                     </div>
-                    <!-- <app-add-archive [archive]="items" (archiveEmit)="deleteEvent($event)"></app-add-archive> -->
 
-                </mat-card>
-            </div>
-        </div>
-    </div>
-
-
-
-</div>
-
-
-<!-- ------------------------------------- adding labels---------------------------------------------------------- -->
-
-<div fxLayout="row wrap">
-    <div *ngFor="let index of labelName">
-        <mat-chip-list>
-            <mat-chip>{{index.label}}
-                <mat-icon (click)="cancelLabel()" matChipRemove>cancel</mat-icon>
-            </mat-chip>
-        </mat-chip-list>
-    </div>
-</div>
-
-
-<!-- <div fxLayout="row wrap" class="spacebetween">
-    <div *ngFor="let index of notes.collaborators" (click)="openCollaboratorPage(notes)">
-      <button mat-mini-fab color="primary" matTooltip={{index.email}} >
-        {{index.firstName|slice:0:1 | uppercase }}
-       </button>
-    </div>
-  </div><br> -->
-
-
-
-
-<!-- --------------------------------------Reaminder Display----------------------------------------------------- -->
-<!-- 
-<div *ngIf="reminderStrike(notes.reminder[0])">
-    <div *ngFor="let index of notes.reminder">
-        <mat-chip-list>
-            <div *ngIf ="(today | date : shortDate)==(index|date:shortDate)">
-            <mat-chip >Today {{index|date:'shortTime'}}
-              <app-add-reminder style="color:rgb(223,223,223)" [reminder]="notes" 
-              (remindEmit)="deleteEvent($event)">
-              </app-add-reminder>
-                <mat-icon (click)="deleteReminder(notes.id)" matChipRemove>cancel</mat-icon>
-            </mat-chip>
-        </div>
-        <div *ngIf ="(tomorrow | date : shortDate)==(index|date:shortDate)">
-                <mat-chip> Tomorrow {{index|date:'shortTime'}}
-                    <app-add-reminder style="color:rgb(223,223,223)" 
-                    [reminder]="notes"
-                     (remindEmit)="deleteEvent($event)">
-                      </app-add-reminder>
-                    <mat-icon (click)="deleteReminder(notes.id)" matChipRemove>cancel</mat-icon>
-                </mat-chip>
-            </div>
-            <div *ngIf ="(today | date : shortDate)!=(index|date:shortDate)&&
-            (tomorrow | date : shortDate)!=(index|date:shortDate)">
-                    <mat-chip>{{index|date:'medium'}}
-                        <app-add-reminder style="color:rgb(223,223,223)" [reminder]="notes" 
-                        (remindEmit)="deleteEvent($event)">
-                          </app-add-reminder>
-                        <mat-icon (click)="deleteReminder(notes.id)" matChipRemove>cancel</mat-icon>
-                    </mat-chip>
+                    <!-- reminder display -->
+                    <mat-chip-list #chipList *ngIf="items.reminder?.length>0">
+                        <mat-chip>
+                            {{items.reminder[0] | date:'d'}}{{items.reminder[0] | date:'MMM '}}{{items.reminder[0] | date:'shortTime'}}
+                            <mat-icon matChipRemove (click)="removeReminder(items)">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                    <div>
+                        <app-icon-list [card]="items" (colorEmit)="Changescolor($event)" (childObject)="update($event)">
+                        </app-icon-list>
+                    </div>
                 </div>
-        </mat-chip-list>
-    </div>
-  </div> -->
-
-
-
-<!-- 
-<div >
-    <div class="mininote" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex.xs="98" fxLayoutGap="10px" fxFlex="80">
-        <div *ngFor="let items of trashcards ; let i = index">
-            <div>
-                <mat-card class="minicard" [style.backgroundColor]="items.color">
+                <hr>
+                <div>
                     <div>
-                        <div fxLayout="row">
-                            <div (click)="openDialog(item)">{{items.title}}</div>
-                            <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button>
+                        Question Asked
+                    </div><br>
+                    <div *ngIf=" items.questionAndAnswerNotes.length!=0" class="pointTo" (click)="goToQA(items.id)">
+                        <div innerHTML={{items.questionAndAnswerNotes[0].message}}></div>
+                    </div>
+                </div>
+                <!-- <app-add-archive [archive]="items" (archiveEmit)="deleteEvent($event)"></app-add-archive> -->
+
+
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<div class="pinned" *ngIf="pinArray.length > 0 && unPinArray.length > 0">others</div>
+<div [ngClass]="gridClass" fxLayoutGap='1%'>
+        <div class="inside" *ngFor="let items of unPinArray | searchBar:Search; let i=index ">
+            <div class="align">
+                <mat-card class="mat"  class="minicard" [style.backgroundColor]="items.color">
+    
+                    <div fxLayout='column'>
+    
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div (click)="openCard(items)" style="cursor : pointer">{{items.title}}</div>
+                            <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button (click)='pin(items,i )'>
+                                    <img src="../../../assets/image/unpin.svg">
                                 </button>
                             </div>
                         </div>
-
-                        <div>{{items.description}}</div>
-                        <div class="icons-div">
-                            <app-icon-list fxLayout="row" [card]="items" fxLayoutAlign="space-between end" (colorEmit)="Changescolor($event)"
-                                (childObject)="update($event)">
-
+    
+                        <div (click)="openCard(items)" style="cursor : pointer">{{items.description}}</div>
+    
+                    <!-- .................collaborator display................. -->
+                        <div fxLayout="row wrap" class="spacebetween">
+                            <div *ngFor="let index of items.collaborators" (click)="openCollaboratorPage(notes)">
+                                <button mat-mini-fab class="colbutton1" matTooltip={{index.email}}>
+                                    {{index.firstName|slice:0:1 | uppercase }}
+                                </button>
+                            </div>
+                        </div><br>
+                        <!-- ...............Labels display........... -->
+                        <div fxLayout="row wrap">
+                            <div *ngFor="let index of labelName">
+                                <mat-chip-list>
+                                    <mat-chip>{{index.label}}
+                                        <mat-icon (click)="cancelLabel()" matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </div>
+                        </div>
+    
+                        <!-- reminder display -->
+                        <mat-chip-list #chipList *ngIf="items.reminder?.length>0">
+                            <mat-chip>
+                                {{items.reminder[0] | date:'d'}}{{items.reminder[0] | date:'MMM '}}{{items.reminder[0] | date:'shortTime'}}
+                                <mat-icon matChipRemove (click)="removeReminder(items)">cancel</mat-icon>
+                            </mat-chip>
+                        </mat-chip-list>
+                        <div>
+                            <app-icon-list [card]="items" (colorEmit)="Changescolor($event)" (childObject)="update($event)">
                             </app-icon-list>
                         </div>
                     </div>
+                    <hr>
+                    <div>
+                        <div>
+                            Question Asked
+                        </div><br>
+                        <div *ngIf=" items.questionAndAnswerNotes.length!=0" class="pointTo" (click)="goToQA(items.id)">
+                        <div innerHTML={{items.questionAndAnswerNotes[0].message}}></div>
+                        </div>
+                    </div>
+                    <!-- <app-add-archive [archive]="items" (archiveEmit)="deleteEvent($event)"></app-add-archive> -->
+    
+    
                 </mat-card>
             </div>
         </div>
     </div>
-</div> -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

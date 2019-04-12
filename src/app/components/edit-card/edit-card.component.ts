@@ -1,3 +1,15 @@
+/************************************************************************************************
+* Execution : 1. default node cmd> dashboard.ts 
+* 
+* Purpose :editing title and description of note
+* 
+* @file : edit-card.ts
+* @module : edit-card.ts - This is optional if expeclictly its an npm or local package
+* @author : Akshaya M I <akshayakumarmi97@gmail.com>
+* @since : 15-2-2019
+*
+*************************************************************************************************/
+
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NoteServiceService } from '../../service/note-service.service';

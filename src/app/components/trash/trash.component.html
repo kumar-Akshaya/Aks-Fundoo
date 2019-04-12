@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutAlign="space-evenly center">
 
-    <div fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlexOffset="5">
         <p>Notes in Trash are deleted after 7 days.</p>
     </div>
 
@@ -10,21 +10,111 @@
     </div>
 </div>
 
+
+
+
+<div [ngClass]="gridClass" fxLayoutGap='1%'>
+        <div class="trnote" fxFlex.xs="98" fxLayoutGap="20px grid" fxFlex="80" fxLayout="row wrap">
+    <div class="inside" *ngFor="let items of trashcards ; let i = index">
+        <div class="align">
+            <mat-card class="mat"  class="minicard" [style.backgroundColor]="items.color">
+
+                <div fxLayout='column'>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div  style="cursor : pointer">{{items.title}}</div>
+                        <!-- <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button (click)='unPin(items,i)'>
+                                <img src="../../../assets/image/pinbar.svg">
+                            </button>
+                        </div> -->
+                    </div>
+
+                    <div  style="cursor : pointer">{{items.description}}</div>
+
+                <!-- .................collaborator display................. -->
+                    <div fxLayout="row wrap" class="spacebetween">
+                        <div *ngFor="let index of items.collaborators" (click)="openCollaboratorPage(notes)">
+                            <button mat-mini-fab class="colbutton" matTooltip={{index.email}}>
+                                {{index.firstName|slice:0:1 | uppercase }}
+                            </button>
+                        </div>
+                    </div><br>
+                    <!-- ...............Labels display........... -->
+                    <div fxLayout="row wrap">
+                        <div *ngFor="let index of labelName">
+                            <mat-chip-list>
+                                <mat-chip>{{index.label}}
+                                    <mat-icon (click)="cancelLabel()" matChipRemove>cancel</mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
+                        </div>
+                    </div>
+
+                    <!-- reminder display -->
+                    <!-- <mat-chip-list #chipList *ngIf="items.reminder?.length>0">
+                        <mat-chip>
+                            {{items.reminder[0] | date:'d'}}{{items.reminder[0] | date:'MMM '}}{{items.reminder[0] | date:'shortTime'}}
+                            <mat-icon matChipRemove (click)="removeReminder(items)">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list> -->
+
+                    <div class="icons-div" fxLayout="row" fxLayoutAlign="start end">
+                        <button mat-icon-button [matMenuTriggerFor]="delete">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                       <mat-menu #delete="matMenu">
+                        <button mat-menu-item (click)="deleteForever(items.id)">
+                          Delete forever
+                        </button>
+                        <button mat-menu-item (click)="postToTrash(items.id)">
+                         Restore
+                        </button>
+                       </mat-menu>
+
+
+                    </div>
+                   
+                </div>
+                
+            </mat-card>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 <div fxLayout="row" fxLayoutAlign="space-evenly end">
     <div class="trnote" fxFlex.xs="98" fxLayoutGap="20px grid" fxFlex="80" fxLayout="row wrap"
          >
         <div *ngFor="let items of trashcards ; let i = index">
             <div>
                 <mat-card class="minicard" [style.backgroundColor]="items.color">
-                    <!-- [style.backgroundColor]="items.childColor" -->
                     <div>
                         <div fxLayout="row" class="trashTitle">
                             <div (click)="openDialog(item)">{{items.title}}</div>
-                            <!-- <div fxLayout="row" fxLayoutAlign="end start"><button mat-icon-button>
-                                        <mat-icon>menu</mat-icon>
-                                    </button>
-                                </div> -->
+                            
                         </div>
+
+                        
                         <div class="trashDescription">
                         <div>{{items.description}}</div>
                     </div>
@@ -48,4 +138,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

@@ -37,5 +37,11 @@ export class ArchieveComponent implements OnInit {
         
       })
   }
+
+  getArchieveNotes(){
+    this.notesService.getArchiveNotes().subscribe(data =>{
+      console.log("archieve notes ", data);
+    })
+  }
  
 }

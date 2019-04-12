@@ -1,3 +1,15 @@
+/************************************************************************************************
+* Execution : 1. default node cmd> dashboard.ts 
+* 
+* Purpose :editing existing label 
+* 
+* @file : edit-label.ts
+* @module : edit-label.ts - This is optional if expeclictly its an npm or local package
+* @author : Akshaya M I <akshayakumarmi97@gmail.com>
+* @since : 20-2-2019
+*
+*************************************************************************************************/
+
 import { Component, OnInit, Inject, ViewChild, ElementRef, EventEmitter, Output, Input } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DashboardComponent,  } from '../dashboard/dashboard.component';

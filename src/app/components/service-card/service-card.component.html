@@ -1,0 +1,70 @@
+<div fxLayout="column">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center"  fxFlex.lg=90 fxFlex.md=90 > 
+    <div class="hoverCard" fxFlexOffset=7 fxFlexOffset.xs=2 (click)="openServicePack()">
+      <mat-card class="mainCartCard">
+    <mat-card class="paymentCard">
+
+      <span class="payment">
+        Price : ${{servicePrice}} per month
+      </span>
+      <div class="spacing">
+        <a type="button"><i class="selection">{{serviceName}}</i></a>
+      </div>
+
+      <ul class="lists">
+        <li>
+          ${{servicePrice}}/month
+        </li>
+        <li class="spacing">
+          {{serviceDescription}}
+        </li>
+
+      </ul>
+
+    </mat-card>
+    <div fxLayout="column" fxLayoutAlign="center center" class="addCart" >
+      ADD TO CART
+    </div>
+    <!-- <div fxLayout="column" fxLayoutAlign="center center" class="addCart" *ngIf="isClicked==true">
+       Selected
+      </div> -->
+  </mat-card>
+</div>
+<div class="hoverCard"  fxFlexOffset=7 fxFlexOffset.xs=2 (click)="openServicePack()" >
+  <mat-card class="mainCartCard" >
+      <mat-card class="paymentCard" >
+          <span class="payment" >
+            Price : ${{servicePrice2}} per month
+          </span>
+          <div class="spacing1">
+            <a type="button"><i class="selection">{{serviceName2}}</i></a>
+          </div>
+    
+          <ul class="lists">
+            <li>
+              ${{servicePrice2}}/month
+            </li>
+            <li class="spacing">
+             {{serviceDescription2}}
+            </li>
+    
+          </ul>
+    
+        </mat-card>
+        <div fxLayout="column" fxLayoutAlign="center center" class="addCart" >
+            ADD TO CART
+          </div>
+          <!-- <div fxLayout="column" fxLayoutAlign="center center" class="addCart" *ngIf="isClicked1==true">Selected</div> -->
+  </mat-card>
+  </div>
+  </div>
+  <div fxLayoutAlign="center center" fxLayout="column" fxFlexOffset=6 class="signAnchor" (click)="SignIn()">
+      <!-- <a type="button" class="signAnchor"><i>SignIn insted</i></a> -->
+      SignIn insted
+    </div>
+  </div>
+
+  <div style="position: relative"> <!-- the position of the parent container must be set to relative -->
+    <!-- It is really important to set loaderId for non-master loader -->
+    <ngx-ui-loader [loaderId]="'loader-02'"></ngx-ui-loader>
+  </div>

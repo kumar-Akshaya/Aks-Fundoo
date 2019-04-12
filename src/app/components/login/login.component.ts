@@ -81,7 +81,7 @@ else{
 
     
     }, err => {
-      this.message="User not found";
+     
       alert('Something went wrong');
     });
   }

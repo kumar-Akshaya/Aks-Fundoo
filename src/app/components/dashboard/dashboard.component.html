@@ -21,30 +21,29 @@
           (keyup)="lookFor()" (click)="goSearch()" class="searchText" autocomplete="off">
 
 
-
+          <ngx-ui-loader></ngx-ui-loader>
 
       </mat-form-field>
     </div>
 
     <div fxFlex="25" class="settingbtn">
-      <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
+      <!-- <button mat-icon-button color="basic" id="refresh" fxHide.xs matTooltip="refresh">
         <mat-icon>refresh</mat-icon>
-      </button>
+      </button> -->
 
-      <button mat-icon-button color="basic" id="grid" fxHide.xs matTooltip="grid" (click)="Change()" (click)="grid()"  (click)="listView()" >
+      <button mat-icon-button color="basic" id="grid"  matTooltip="grid" (click)="grid()" >
         <!-- <mat-icon>border_all</mat-icon> -->
        
           <img *ngIf="isClicked==false" src="../../../assets/image/outline-view_agenda-24px.svg"/>
           <img *ngIf="isClicked==true" src="../../../assets/image/outline-border_all-24px.svg" />
       </button>
       
+      <button mat-icon-button color="basic" matTooltip="Cart" (click)="gotoCart()">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
      
-      <!-- <button mat-icon-button *ngIf="isClicked==true" fxFlex.xs="5">
-        
-      </button> -->
-
       <div class="settings">
-        <button mat-icon-button [matMenuTriggerFor]="menu" colour="basic" matTooltip="settings">
+        <button mat-icon-button [matMenuTriggerFor]="menu" fxHide.xs colour="basic" matTooltip="settings">
           <mat-icon>settings</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
@@ -55,53 +54,65 @@
         </mat-menu>
 
       </div>
-      <button mat-icon-button color="basic" fxHide.xs matTooltip="Notification">
-       <img src="../../../assets/image/outline-notification_important-24px (1).svg"/>
-      </button>
+     
 
 
     </div>
 
 
-    <button mat-icon-button color="basic" matTooltip="Apps">
+    <button mat-icon-button color="basic"  matTooltip="Apps">
       <mat-icon>apps</mat-icon>
     </button>
 
-    <div [matMenuTriggerFor]="menu1" fxFlex="5">
+    <!-- <div [matMenuTriggerFor]="menu1" fxFlex="5">
       <img class="pic" src="../../../assets/image/profile.jpg"/>
+      </div> -->
+
+      
+      <div  matTooltip="Google Account" class="img" >
+        <button *ngIf="image2!=''"  class="profilebutton" mat-mini-fab color="disabled"
+         [matMenuTriggerFor]="appMenu">
+            <img src="{{image2}}" class="image">
+          </button>
+          <button *ngIf="image2==''" class="profilebutton" mat-mini-fab color="disabled"
+          [matMenuTriggerFor]="appMenu">
+              {{firstName | slice:0:1}}
+            </button>
+      <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+        <div class="padding" fxLayoutAlign="row wrap" fxLayoutGap="15px" 
+        fxLayoutAlign="space-between">
+        <div >
+        <button  *ngIf="image2!=''" (click) = "$event.stopPropagation()" 
+        [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover'}"
+        (click)="selectFile.click()" matTooltip="{{firstName | titlecase}}"
+        mat-mini-fab color="disabled" class="profilebutton1">
+        <div class="changeButton">
+        Change
+      </div>  
+      </button>
+        <button *ngIf="image2==''" (click) = "$event.stopPropagation()" 
+        (click)="selectFile.click()" matTooltip="{{firstName | titlecase}}"
+        mat-mini-fab color="disabled" class="profile-pic">
+        {{firstName | slice:0:1}}
+        </button>
+        <input style="display:none" (click) = "$event.stopPropagation()"
+         class="image"
+        type="file" (change)="onFileUpload($event)" #selectFile>
+        </div>
+        <div fxLayout="column" class="name">
+        <div>
+        {{firstName}} {{lastName}}</div><br>
+        <div>{{email}}</div>
       </div>
-
-    <!-- <button mat-icon-button [matMenuTriggerFor]="menu1" colour="basic" class="basic" matTooltip=" GOOGLE ACCOUNT "  >
-     
-      <img src="../../../assets/image/profile.jpg"/>
-     
-    </button> -->
-
-   
-    <mat-menu #menu1="matMenu">
-      <div class="profileMenu">
-      <div  fxLayout="row" fxLayoutAlign="start start" >
-          
-          <div >
-              <img class="pic2" src="../../../assets/image/profile.jpg"/>
-              </div>   
-
-      </div>
-     
-     
-      <div fxLayout="row" fxLayoutAlign="end start" class="userNameinf">
-      <p >Akshaya M I</p>
+        </div>
+        <hr>
+        <div fxLayoutAlign="row wrap" class="add" fxLayoutGap=85px fxLayoutAlign="center">
+        <button class="signup_button" mat-button  
+                (click)="Logout()" matTooltip="Logout">Logout</button></div>
+        </mat-menu> 
     </div>
-    <div  fxLayout="row" fxLayoutAlign="center center" >
-      <p class="userEmail">akshayakumarmi97@gmail.com</p>
-    </div>
-    
-      <mat-divider></mat-divider>
-      <button mat-flat-button (click)="addAccount()">Add account</button>
-      <button class="signout" mat-flat-button (click)="signout()">Sign out</button>
-     
-    </div>
-    </mat-menu>
+
+ 
   
   </mat-toolbar>
   <mat-divider></mat-divider>
@@ -156,17 +167,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>
-       <!-- <app-maincard (messageEvent)="recieveMessage($event)" ></app-maincard> -->
-      <!-- <app-content></app-content>  -->
-      <!-- <app-note></app-note> -->
-      <!-- <app-trash></app-trash> -->
-      <!-- <app-archieve></app-archieve>
-     <app-search></app-search> 
-      <app-update-note></app-update-note> -->
-      <!-- <app-search></app-search>  -->
-      <!-- <app-remainder></app-remainder> -->
-      <!-- <app-edit-lable></app-edit-lable> -->
-      
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

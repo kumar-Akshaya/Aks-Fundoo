@@ -1,3 +1,85 @@
+
+    .mat{
+        width: 255px;
+        margin-top: 15px;
+    }
+
+.list{
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center flex-start;
+    align-items: center;
+  width: -webkit-fill-available;
+  .inside{
+      width: -webkit-fill-available;
+  }
+  .align{
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: center;
+  }
+    .minicard{
+        // background-color: rgb(243, 229, 229);
+        margin-top: 10px;
+        height: fit-content;
+        width: 50%;
+        border-radius: 15px;
+        border: lightgrey solid 1px;
+        
+    }
+    
+}
+
+.grid{
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: flex-start center;
+    align-items: flex-start;
+
+    .minicard{
+        // background-color: rgb(243, 229, 229);
+        margin-top: 10px;
+        height: fit-content;
+        // height: 150px;
+    //    height: 100px;
+        // min-height: 50px;
+        width: 250px;
+        // max-width: 250px;
+        // max-height: 400px;
+        border-radius: 15px;
+        border: lightgrey solid 1px;
+        
+    }
+}
+.colbutton{
+    color:#fafafa;
+    background-color: gray;
+}
+.colbutton1{
+    color:#fafafa;
+    background-color: rgb(63, 63, 231);
+}
+
+.pinned{
+    font-size: 110%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
 // note card css
 .matcard{
    
@@ -22,43 +104,34 @@
 
 
 
-.minicard{
-    // background-color: rgb(243, 229, 229);
-    margin-top: 10px;
-   height: 100px;
-    // min-height: 50px;
-    width: 220px;
-    // max-width: 250px;
-    // max-height: 400px;
-    border-radius: 15px;
-    border: lightgrey solid 1px;
-    
-}
+
 .maxcard{
     margin-top: 10px;
-    height: 100px;
+    // height: fit-content;
+    // height: 250px;
+    // height: 100px;
     width: 520px;
     border-radius: 15px;
     border: lightgrey solid 1px;
 }
 
-.minicard:hover .icons-div{
-    visibility: visible;
-    opacity: 0.8;
-}
+// .minicard:hover .icons-div{
+//     visibility: visible;
+//     opacity: 0.8;
+// }
 
 
 
 .icons-div{
-    margin-left: 18%;
+    // margin-left: 18%;
     position: absolute;
     bottom: 0;
 }
 
-.icons-div{
-    visibility:hidden;
-    transition: visibility 0.2s, opacity 0.2s linear;
-}
+// .icons-div{
+//     visibility:hidden;
+//     transition: visibility 0.2s, opacity 0.2s linear;
+// }
 
 
 .main{
@@ -70,4 +143,11 @@
 .mininote{
     margin-left: 15%;
     width: 90%;
+}
+
+
+.hidden{
+    height: 40px;
+    width: 224px;
+    // border: 1px solid black;
 }

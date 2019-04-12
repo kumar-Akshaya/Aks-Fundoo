@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppMaterial } from './app.material.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
 import { ForgetComponent } from './components/forget/forget.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ResetComponent } from './components/reset/reset.component';
@@ -32,7 +33,18 @@ import { CollaboratorComponent } from './components/collaborator/collaborator.co
 import { AskQuestionComponent } from './components/ask-question/ask-question.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BarRatingModule } from "ngx-bar-rating";
-import {MatBottomSheetModule} from '@angular/material/bottom-sheet'; 
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { CartComponent } from './components/cart/cart.component';
+import { CartLoginComponent } from './components/cart-login/cart-login.component';
+import { PackServiceComponent } from './components/pack-service/pack-service.component';
+import { CartSignUpComponent } from './components/cart-sign-up/cart-sign-up.component';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
+import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import { AddReminderComponent } from './components/add-reminder/add-reminder.component';
+import { ImageCropComponent } from './components/image-crop/image-crop.component';
+import { StarratingComponent } from './components/starrating/starrating.component';
+import { LikeComponent } from './components/like/like.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +70,18 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     EditCardComponent,
     CollaboratorComponent,
     AskQuestionComponent,
-
+    CartComponent,
+    CartLoginComponent,
+    PackServiceComponent,
+    CartSignUpComponent,
+    ServiceCardComponent,
+    ShopingCartComponent,
+    AddReminderComponent,
+    ImageCropComponent,
+    ArchieveComponent,
+    StarratingComponent,
+    LikeComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -66,17 +89,23 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     // RouterModule.forRoot([]),
     HttpClientModule,
     AppMaterial,
+    ImageCropperModule,
     NgxMaterialTimepickerModule.forRoot(),
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot() ,
-    BarRatingModule
+    BarRatingModule, 
+    NgxUiLoaderModule,
+    ImageCropperModule
+
 
   ],
   entryComponents: [
+    ImageCropComponent,
     EditLableComponent,
     EditCardComponent,
     CollaboratorComponent,
     AskQuestionComponent,
+    PackServiceComponent
   ],
   // exports : [
   //   EditLableComponent

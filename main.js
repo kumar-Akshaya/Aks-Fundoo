@@ -9,7 +9,7 @@ function createWindow () {
   // and load the index.html of the app.
   //win.loadFile('index.html')
   win.webContents.openDevTools();
-  win.loadURL(`file://${__dirname}/dist/Fundoo-Notes/index.html`);
+  win.loadURL(`file://${__dirname}/index.html`);
   //win.loadURL('http://localhost:4200');
   /*
   win.loadURL(url.format({

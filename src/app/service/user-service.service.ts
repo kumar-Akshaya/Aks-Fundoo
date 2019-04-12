@@ -19,6 +19,8 @@ export class UserServiceService {
   
   searchUserList(body: any){
     return this.httpService.postJSON('user/searchUserList',body);
-    
+  }
+  service(){
+    return this.httpService.getJSON('user/service');
   }
 }

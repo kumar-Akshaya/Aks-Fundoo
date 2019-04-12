@@ -52,10 +52,28 @@
                </button>
             </div>
           </div><br>
+          <div>
+            <mat-chip-list *ngIf="originalReminder?.length > 0" #chipList>
+              <mat-chip>
+             <div *ngIf="originalReminder[0].date==undefined"> 
+                {{originalReminder[0] | date:'d'}}{{originalReminder[0] | date:'MMM '}}{{originalReminder[0] | date:'shortTime'}}
+        
+             </div>
+             <div *ngIf="originalReminder[0].date!=undefined">
+                {{originalReminder[0].date | date:'d'}}{{originalReminder[0].date | date:'MMM '}}{{originalReminder[0].date | date:'shortTime'}}
+        
+             </div>
+             
+                <!-- {{item.reminder[0] | date:'d'}}{{item.reminder[0] | date:'MMM '}}{{item.reminder[0] | date:'shortTime'}} -->
+                <mat-icon matChipRemove (click)="removeReminder(item)">cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+        
+          </div>
           
     <div>
       <div fxFlexOffset="10"  fxLayout="row" fxLayoutAlign="space-between end" fxFlex.xs="90">
-          <app-icon-list (colorEmit)="Changes($event)" ></app-icon-list>
+          <app-icon-list (colorEmit)="Changes($event)" (childObject)="update($event)" ></app-icon-list>
           <div  fxLayout="row" fxFill.xs  fxLayoutAlign="end end" fxFill  fxFlex.xs="5">
     <button class="addnote" mat-button (click)="addNote()" >close</button>
   </div>

@@ -1,0 +1,225 @@
+<div fxLayout='column'>
+  <div fxLayout="row" class="step" fxLayoutGap='5%'>
+
+    <mat-card class="fundooNote">
+      <div class="fundooText">Fundoo Notes</div>
+    </mat-card>
+
+
+    <!-- progress bar -->
+
+    <div *ngIf="firstShow" class="firstShow" fxLayout='column'>
+
+      <div class="progress" fxLayout='row' fxLayoutAlign="none center">
+
+        <div fxFlex='90'>
+          <mat-progress-bar mode="determinate" value="2"></mat-progress-bar>
+
+        </div>
+        <div class="cart">
+          <mat-icon> shopping_cart</mat-icon>
+        </div>
+
+
+
+      </div>
+      <div fxLayout='row' fxLayoutGap='20%'>
+        <div class="signin">
+          SIGNIN
+        </div>
+        <div class="signin">
+          REVIEW
+        </div>
+        <div class="signin">
+          COMPLETE PAYMENT
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <div *ngIf="secondShow" class="secondShow" fxLayout='column'>
+
+      <div class="progress" fxLayout='row' fxLayoutAlign="none center">
+
+        <div fxFlex='90'>
+          <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+
+        </div>
+        <div class="cart">
+          <mat-icon> shopping_cart</mat-icon>
+        </div>
+
+
+
+      </div>
+      <div fxLayout='row' fxLayoutGap='20%'>
+        <div class="signin">
+          SIGNIN
+        </div>
+        <div class="signin">
+          REVIEW
+        </div>
+        <div class="signin">
+          COMPLETE PAYMENT
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <div *ngIf="thirdShow" class="thirdShow" fxLayout='column'>
+
+      <div class="progress" fxLayout='row' fxLayoutAlign="none center">
+
+        <div fxFlex='90'>
+          <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+
+        </div>
+        <div class="cart">
+          <mat-icon> shopping_cart</mat-icon>
+        </div>
+
+
+
+      </div>
+      <div fxLayout='row' fxLayoutGap='20%'>
+        <div class="signin">
+          SIGNIN
+        </div>
+        <div class="signin">
+          REVIEW
+        </div>
+        <div class="signin">
+          COMPLETE PAYMENT
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <div class="shoppingText" fxFlexOffset=2>
+    <div fxLyout=row fxFlexOffset=5>
+      Shoping Cart
+    </div>
+
+  </div>
+  <!-- <hr /> -->
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-divider class="cartDevider"></mat-divider>
+  </div>
+
+  <!-- <div class="line"></div> -->
+  <div fxLayout="column" fxFlexOffset=1>
+
+    <div fxLayout="row" fxFlex="100" fxFlex.md=90 fxFlex.sm=95 fxFlex.xs=100>
+
+      <mat-card fxLayout="column" fxFlexOffset=10 fxFlexOffset.xs=2 class="serviceCard" fxFlex=10>
+        <div class="plantext">${{price}} per month {{type}}</div>
+      </mat-card>
+      <div fxLayout="column" fxFlexOffset=5 fxFlexOffset.xs=2 fxFlex=30>
+        <span class="packDet">{{type}} pack Service</span>
+        <li class="serviceDes">
+         {{description}}
+        </li>
+      </div>
+
+      <div fxLayout="column" fxFlexOffset=3 fxFlexOffset.xs=1 fxFlex=10>
+        <span class="packDet">price</span>
+        <span class="packDetails">
+          ${{price}}
+        </span>
+      </div>
+
+      <div fxLayout="column" fxFlexOffset=2 fxFlexOffset.xs=1 fxFlex=10>
+        <span class="packDet">validity</span>
+        <span class="packDetails">per month</span>
+      </div>
+
+      <div fxFlexOffset=2 fxFlexOffset.xs=1 fxFlex=30  *ngIf="show==false && show1==false">
+        <mat-card class="planCard" >
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row" >
+              <span class="Subtotal">
+                Subtotal (1 item)
+              </span>
+              <span class="colon">:</span>
+              <span class="rateCart">
+                ${{price}}
+              </span>
+            </div>
+
+            <button type="button" class="proCheck" (click)="proceed()">proceed to checkout</button>
+          </div>
+        </mat-card>
+      </div>
+
+      <div fxFlexOffset=2 fxFlexOffset.xs=1 fxFlex=30 *ngIf="show==true && show1==false">
+        <mat-card class="planCard">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <button type="button" class="proCheck" (click)="placeOrder()">place your order</button>
+            <div fxLayout="row" >
+              <span class="Subtotal">
+                Subtotal (1 item)
+              </span>
+              <span class="colon">:</span>
+              <span class="rateCart">
+                ${{price}}
+              </span>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+ 
+      <div fxFlexOffset=2 fxFlexOffset.xs=1 fxFlex=30 *ngIf="show==true && show1==true">
+          <mat-card class="planCard">
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <button type="button" class="proCheck" disabled >status</button>
+              <div fxLayout="row" >
+                <span class="statusorder">
+                  pending 
+                </span>
+               
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      
+
+    </div>
+
+  </div>
+  <div fxLayout="column" fxFlexOffset=1>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-divider class="cartDevider"></mat-divider>
+    </div>
+
+  </div>
+  <div fxLayout="row" *ngIf="show==false">
+    <div fxLayout="row" fxFlexOffset=7 class="subTotoal">
+      Sub Total (1 item) : ${{price}}
+    </div>
+
+  </div>
+ 
+    <div *ngIf="show" fxLayout="row" fxFlexOffset=2 fxFlexOffset=1 fxLayoutGap='30%' fxLayoutGap.xs='10%'>
+      <div fxLayout="column" fxFlexOffset=5 fxFlexOffset=2>
+        <textarea placeholder="address" class="addInput" fxFlexOffset=5 fxFlexOffset=1 [formControl]="address"></textarea>
+      </div>
+      <div fxLayout="column">
+        <span class="paymethod">Payment Method</span>
+        <span class="cashDel">Cash On Delivary</span>
+      </div>
+    </div>
+  
+
+</div>
